@@ -51,7 +51,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
 		mTitle = getTitle();
-
+		map_2 = new HashMap<Integer,Integer>();
+		map = new HashMap<Integer,SpeedRecord>();
+		SpeedRecord mspeedrecord = null;
+		Fragment mcontent = null;
+		PlaceholderFragment mplaceholderfragment = null;
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 		init_map();
@@ -206,7 +210,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	        dbEntry.close();
 	        Log.d("save when stop", "save complete");
 	        new Logger(tmp.station_info,tmp.halt_or_not,"/sdcard/speed/");
-	        map = new HashMap<Integer,SpeedRecord>();
 			super.onStop();
 		}
 	}
