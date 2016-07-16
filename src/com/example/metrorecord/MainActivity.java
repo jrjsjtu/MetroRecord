@@ -206,6 +206,7 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	        dbEntry.close();
 	        Log.d("save when stop", "save complete");
 	        new Logger(tmp.station_info,tmp.halt_or_not,"/sdcard/speed/");
+	        map = new HashMap<Integer,SpeedRecord>();
 			super.onStop();
 		}
 	}
