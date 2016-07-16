@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MetroRecord</string>
+    <string name="title_section1">Mesurement</string>
+    <string name="title_section2">Speed</string>
+    <string name="title_section3">Nothing</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Output Data</string>
+    <string name="action_settings">Settings</string>
+	<string name="line_5">闵行开发区;文井路;华宁路;金平路;东川路;剑川路;北桥;颛桥;银都路;春申路;莘庄</string>
+	<string name="line_1">莘庄;外环路;莲花路;锦江乐园;上海南站;漕宝路;上海体育馆;徐家汇;衡山路;常熟路;陕西南路;黄陂南路;人民广场;新闸路;汉中路;上海火车站;中山北路;延长路;上海马戏城;汶水路;彭浦新村;共康路;通河新村;呼兰路;共富新村;宝安公路;友谊西路;富锦路</string>
+	<string name="metro_5">line 5</string>
+	<string name="metro_1">line 1</string>
+</resources>

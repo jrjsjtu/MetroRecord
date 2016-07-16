@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"  
+    android:layout_width="match_parent"  
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants" 
+    android:orientation="vertical" >  
+	    <RelativeLayout android:layout_width="match_parent"  
+		        android:layout_height="match_parent"  
+		        android:orientation="horizontal"
+		        android:descendantFocusability="blocksDescendants" 
+		        android:background="#ffffff">  
+	        <TextView   
+	            android:id="@+id/title"  
+	            android:layout_width="wrap_content"  
+	            android:layout_height="wrap_content"  
+	            android:layout_centerVertical="true"
+	            android:textColor="#666872"/>
+
+	        <Button   
+				android:id="@+id/halt"  
+				android:layout_width="wrap_content"  
+				android:layout_height="wrap_content" 
+				android:focusable="false" 
+				android:layout_alignParentRight ="true"
+				android:text="halt"/> 
+
+		    <Button   
+		        android:id="@+id/stop"  
+		        android:layout_width="wrap_content"  
+		        android:layout_height="wrap_content"  
+		        android:focusable="false"
+		        android:layout_toLeftOf="@+id/halt"
+		        android:text="stop"/>
+		    <Button   
+		        android:id="@+id/start"  
+		        android:layout_width="wrap_content"  
+		        android:layout_height="wrap_content" 
+		        android:focusable="false" 
+		        android:layout_toLeftOf="@+id/stop"
+		        android:text="start"/>  
+	    </RelativeLayout>  
+    	
+        <LinearLayout 
+	        android:orientation="horizontal" 
+	        android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:background="#acc">
+	        <LinearLayout 
+		        android:orientation="vertical" 
+		        android:layout_width="fill_parent" 
+		        android:layout_height="fill_parent" 
+		        android:layout_weight="1">
+		        <TextView   
+		            android:id="@+id/start_time"  
+		            android:layout_width="wrap_content"  
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="left|center_vertical"
+		            android:textColor="#ffffffff"/>
+            </LinearLayout>
+	        <LinearLayout 
+		        android:orientation="vertical" 
+		        android:layout_width="fill_parent" 
+		        android:layout_height="fill_parent" 
+		        android:layout_weight="1">
+			  	<TextView   
+		            android:id="@+id/stop_time"  
+		            android:layout_width="wrap_content"  
+		            android:layout_height="wrap_content" 
+		            android:layout_gravity="right|center_vertical" 
+		            android:textColor="#ffffffff"/>  
+            </LinearLayout>
+    </LinearLayout>
+</LinearLayout>  
