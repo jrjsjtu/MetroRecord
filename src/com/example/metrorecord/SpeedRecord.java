@@ -39,8 +39,11 @@ public class SpeedRecord extends ListFragment{
 	private List<Map<String, Object>> mData; 
     private SimpleAdapter adapter;  
     //this size of int is 17,beacuse there is 16 lines in Shanghai,but there is no line 0
-    int[] number2resource = new int[17];
+    static int[] number2resource = new int[17];
+    static int[] number2distance = new int[17];
+    public String[] distance_info;
     public String[] station_info;
+    public String[] name_list;
     public boolean[] halt_or_not;
     @Override  
     public View onCreateView(LayoutInflater inflater, ViewGroup container,  
@@ -52,12 +55,20 @@ public class SpeedRecord extends ListFragment{
     }
     //this is used to map the position of drawer to the resource of string
     private void init_map(){
+    	number2resource[7] = R.string.line_7;
     	number2resource[5] = R.string.line_5;
-    	number2resource[1] = R.string.line_1;	
+    	number2resource[1] = R.string.line_1;
+    	number2distance[7] = R.string.line_7_distance;
+    	number2distance[5] = R.string.line_5_distance;
+    	number2distance[1] = R.string.line_1_distance;
     }
     
     private int get_resource(){
     	return number2resource[current_line];
+    }
+    
+    private int get_distance(){
+    	return number2distance[current_line];
     }
     @Override  
     public void onCreate(Bundle savedInstanceState) {  
@@ -66,13 +77,15 @@ public class SpeedRecord extends ListFragment{
         init_map();
         Log.i("listview", "--------onCreate");
         String line_info = this.getString(get_resource());
-        String[] list = line_info.split(";");
-        station_info = new String[list.length*2];
-        halt_or_not = new boolean[list.length];
-        for (int i=0;i<list.length;i++){
+        String dis_info = this.getString(get_distance());
+        name_list = line_info.split(";");
+        distance_info = dis_info.split(";");
+        station_info = new String[(name_list.length-1)*2];
+        halt_or_not = new boolean[name_list.length-1];
+        for (int i=0;i<name_list.length-1;i++){
         	halt_or_not[i]=false;
         }
-        mData = getData(list);
+        mData = getData(name_list);
         adapter = new my_adapter(getActivity(), mData, R.layout.item, new String[]{"title"}, new int[]{R.id.title});  
         setListAdapter(adapter);  
     }  
@@ -85,9 +98,10 @@ public class SpeedRecord extends ListFragment{
     
     private List<Map<String, Object>> getData(String[] strs) {  
         List<Map<String ,Object>> list = new ArrayList<Map<String,Object>>();  
-        for (int i = 0; i < strs.length; i++) {  
+        for (int i = 0; i < strs.length-1; i++) {  
             Map<String, Object> map = new HashMap<String, Object>();  
             map.put("title", strs[i]); 
+            map.put("title_stop", strs[i+1]);
             list.add(map);  
         }
         return list;  
@@ -99,6 +113,7 @@ public class SpeedRecord extends ListFragment{
     	
         public final class ViewHolder { 
         	public TextView name;
+        	public TextView name_stop;
             public TextView start_time;  
             public TextView stop_time;  
             public Button Btn_start;
@@ -136,6 +151,7 @@ public class SpeedRecord extends ListFragment{
                 holder=new ViewHolder();    
                 convertView = mInflater.inflate(R.layout.item, null);
                 holder.name = (TextView)convertView.findViewById(R.id.title);
+                holder.name_stop = (TextView)convertView.findViewById(R.id.title_stop);
                 holder.start_time = (TextView)convertView.findViewById(R.id.start_time);  
                 holder.stop_time = (TextView)convertView.findViewById(R.id.stop_time);  
                 holder.Btn_start = (Button)convertView.findViewById(R.id.start);
@@ -147,6 +163,7 @@ public class SpeedRecord extends ListFragment{
             }         
             
             holder.name.setText((String)mData.get(position).get("title"));
+            holder.name_stop.setText((String)mData.get(position).get("title_stop"));
             final TextView mstart = holder.start_time;
             final TextView mstop = holder.stop_time;
             

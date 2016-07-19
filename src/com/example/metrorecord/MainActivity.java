@@ -1,5 +1,9 @@
 package com.example.metrorecord;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,9 +40,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	 */
 	
 	static public Map<Integer,SpeedRecord> map = new HashMap<Integer,SpeedRecord>();
+	static public Map<Integer,Integer> map_2 = new HashMap<Integer,Integer>();
 	static public int cur_sr;
-	public Map<Integer,Integer> map_2 = new HashMap<Integer,Integer>();
-	
+	static public String file_path;
 	private CharSequence mTitle;
 	public SpeedRecord mspeedrecord = null;
 	public Fragment mcontent = null;
@@ -59,12 +63,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 		init_map();
+		init_file();
 	}
 	
 	private void init_map(){
 		cur_sr = R.id.metro1;
-		map_2.put(R.id.metro1, 5);
-		map_2.put(R.id.metro2, 1);
+		map_2.put(R.id.metro1, 1);
+		map_2.put(R.id.metro5, 5);
+		map_2.put(R.id.metro7, 7);
 	}
 
 	@Override
@@ -141,7 +147,11 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 			cur_sr = id;
 			onNavigationDrawerItemSelected(1);
 			return true;
-		}else if(id == R.id.metro2 && mTitle.equals(getString(R.string.title_section2))){
+		}else if(id == R.id.metro5 && mTitle.equals(getString(R.string.title_section2))){
+			cur_sr = id;
+			onNavigationDrawerItemSelected(1);
+			return true;
+		}else if(id == R.id.metro7 && mTitle.equals(getString(R.string.title_section2))){
 			cur_sr = id;
 			onNavigationDrawerItemSelected(1);
 			return true;
@@ -206,12 +216,32 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	        dbEntry.open();
 	        Log.d("database", "Database opened.");
 	        SpeedRecord tmp = MainActivity.map.get(MainActivity.cur_sr);
-	        dbEntry.createEntry( tmp.station_info,tmp.halt_or_not,tmp.current_line);
+	        //dbEntry.createEntry( tmp.station_info,tmp.halt_or_not,tmp.current_line);
 	        dbEntry.close();
 	        Log.d("save when stop", "save complete");
-	        new Logger(tmp.station_info,tmp.halt_or_not,"/sdcard/speed/");
+	        new Logger(map_2.get(cur_sr).toString(),tmp,MainActivity.file_path);
 			super.onStop();
 		}
+		
 	}
 
+	private void init_file(){
+		if (android.os.Environment.getExternalStorageState().equals(
+				android.os.Environment.MEDIA_MOUNTED)) {
+			String mobilePath = android.os.Environment
+					.getExternalStorageDirectory() + "/MetroRecord";
+			File mobileFile = new File(mobilePath);
+			if (!mobileFile.exists()){
+				mobileFile.mkdirs();
+			}
+			mobilePath = mobilePath + "/" + "speed";
+			file_path = mobilePath;
+			mobileFile = new File(mobilePath);
+			if (!mobileFile.exists()){
+				mobileFile.mkdirs();
+			}
+		} else {
+			return;
+		}
+	}
 }

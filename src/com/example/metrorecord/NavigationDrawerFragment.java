@@ -269,10 +269,10 @@ public class NavigationDrawerFragment extends Fragment {
 	        dbEntry.open();
 	        Log.d("database", "Database opened.");
 	        SpeedRecord tmp = MainActivity.map.get(MainActivity.cur_sr);
-	        dbEntry.createEntry( tmp.station_info,tmp.halt_or_not,tmp.current_line);
+	        //dbEntry.createEntry( tmp.station_info,tmp.halt_or_not,tmp.current_line);
 	        dbEntry.close();
 			Toast.makeText(getActivity(), "save data success", Toast.LENGTH_SHORT).show();
-			new Logger(tmp.station_info,tmp.halt_or_not,"/sdcard/speed/");
+			new Logger(MainActivity.map_2.get(MainActivity.cur_sr).toString(),tmp,MainActivity.file_path);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
