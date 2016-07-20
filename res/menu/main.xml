@@ -14,6 +14,25 @@
         android:orderInCategory="100"
         android:title="@string/metro_1"
         app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro2"
+        android:orderInCategory="100"
+        android:title="@string/metro_2"
+        app:showAsAction="never"/>
+        
+    <item
+        android:id="@+id/metro3"
+        android:orderInCategory="100"
+        android:title="@string/metro_3"
+        app:showAsAction="never"/>
+            
+    <item
+        android:id="@+id/metro4"
+        android:orderInCategory="100"
+        android:title="@string/metro_4"
+        app:showAsAction="never"/>
+                
 
     <item
         android:id="@+id/metro5"

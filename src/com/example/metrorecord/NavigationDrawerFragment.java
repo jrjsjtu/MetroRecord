@@ -265,6 +265,7 @@ public class NavigationDrawerFragment extends Fragment {
 		}
 		if (item.getItemId() == R.id.action_example) {
 			//Toast.makeText(getActivity(), "Output data", Toast.LENGTH_SHORT).show();
+			item.setEnabled(false);
 	        SqlDatabase dbEntry = new SqlDatabase(getActivity());
 	        dbEntry.open();
 	        Log.d("database", "Database opened.");
@@ -273,6 +274,7 @@ public class NavigationDrawerFragment extends Fragment {
 	        dbEntry.close();
 			Toast.makeText(getActivity(), "save data success", Toast.LENGTH_SHORT).show();
 			new Logger(MainActivity.map_2.get(MainActivity.cur_sr).toString(),tmp,MainActivity.file_path);
+			item.setEnabled(true);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);

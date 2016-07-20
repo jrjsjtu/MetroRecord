@@ -69,6 +69,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	private void init_map(){
 		cur_sr = R.id.metro1;
 		map_2.put(R.id.metro1, 1);
+		map_2.put(R.id.metro2, 2);
+		map_2.put(R.id.metro3, 3);
+		map_2.put(R.id.metro4, 4);
 		map_2.put(R.id.metro5, 5);
 		map_2.put(R.id.metro7, 7);
 	}
@@ -144,6 +147,18 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		if (id == R.id.metro1 && mTitle.equals(getString(R.string.title_section2))) {
+			cur_sr = id;
+			onNavigationDrawerItemSelected(1);
+			return true;
+		}else if(id == R.id.metro2 && mTitle.equals(getString(R.string.title_section2))){
+			cur_sr = id;
+			onNavigationDrawerItemSelected(1);
+			return true;
+		}else if(id == R.id.metro3 && mTitle.equals(getString(R.string.title_section2))){
+			cur_sr = id;
+			onNavigationDrawerItemSelected(1);
+			return true;
+		}else if(id == R.id.metro4 && mTitle.equals(getString(R.string.title_section2))){
 			cur_sr = id;
 			onNavigationDrawerItemSelected(1);
 			return true;

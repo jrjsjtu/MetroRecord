@@ -57,9 +57,15 @@ public class SpeedRecord extends ListFragment{
     private void init_map(){
     	number2resource[7] = R.string.line_7;
     	number2resource[5] = R.string.line_5;
+    	number2resource[4] = R.string.line_4;
+    	number2resource[3] = R.string.line_3;
+    	number2resource[2] = R.string.line_2;
     	number2resource[1] = R.string.line_1;
     	number2distance[7] = R.string.line_7_distance;
     	number2distance[5] = R.string.line_5_distance;
+    	number2distance[4] = R.string.line_4_distance;
+    	number2distance[3] = R.string.line_3_distance;
+    	number2distance[2] = R.string.line_2_distance;
     	number2distance[1] = R.string.line_1_distance;
     }
     
