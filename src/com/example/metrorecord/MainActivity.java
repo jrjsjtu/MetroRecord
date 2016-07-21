@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -21,9 +22,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
@@ -42,11 +45,12 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 	static public Map<Integer,SpeedRecord> map = new HashMap<Integer,SpeedRecord>();
 	static public Map<Integer,Integer> map_2 = new HashMap<Integer,Integer>();
 	static public int cur_sr;
-	static public String file_path;
+	static public String file_path,file_path_acc;
 	private CharSequence mTitle;
 	public SpeedRecord mspeedrecord = null;
 	public Fragment mcontent = null;
 	public PlaceholderFragment mplaceholderfragment = null;
+	public static Accelerometer mAccelerometer = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -60,10 +64,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		SpeedRecord mspeedrecord = null;
 		Fragment mcontent = null;
 		PlaceholderFragment mplaceholderfragment = null;
+		
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
 		init_map();
 		init_file();
+		
+		SensorManager mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		mAccelerometer = new Accelerometer(mSensorManager,file_path_acc);
 	}
 	
 	private void init_map(){
@@ -177,6 +185,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		 */
 		private static final String ARG_SECTION_NUMBER = "section_number";
 		private Activity mactivity;
+		private Button start_btn;
+		private Button stop_btn;
 		/**
 		 * Returns a new instance of this fragment for the given section number.
 		 */
@@ -194,6 +204,28 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.trrrr, container, false);
+			start_btn =(Button)rootView.findViewById(R.id.start_record);
+			stop_btn =(Button)rootView.findViewById(R.id.stop_record);
+			start_btn.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					mAccelerometer.start_record();
+					start_btn.setEnabled(false);
+					stop_btn.setEnabled(true);
+				}
+				
+			});
+			stop_btn.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					mAccelerometer.stop_record();
+					start_btn.setEnabled(true);
+					stop_btn.setEnabled(false);
+				}
+				
+			});
 			return rootView;
 		}
 
@@ -238,9 +270,14 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 			if (!mobileFile.exists()){
 				mobileFile.mkdirs();
 			}
-			mobilePath = mobilePath + "/" + "speed";
-			file_path = mobilePath;
-			mobileFile = new File(mobilePath);
+			file_path = mobilePath + "/" + "speed";
+			mobileFile = new File(file_path);
+			if (!mobileFile.exists()){
+				mobileFile.mkdirs();
+			}
+			
+			file_path_acc = mobilePath + "/" + "acc";
+			mobileFile = new File(file_path_acc);
 			if (!mobileFile.exists()){
 				mobileFile.mkdirs();
 			}

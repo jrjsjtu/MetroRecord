@@ -8,10 +8,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.metrorecord.MainActivity$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/section_label"
-        android:text="@string/action_example"
+    <Button
+        android:id="@+id/start_record"
+        android:text="start_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    
+    <Button
+        android:id="@+id/stop_record"
+        android:text="stop_record"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/start_record" 
+        android:enabled="false"/>
 
 </RelativeLayout>
