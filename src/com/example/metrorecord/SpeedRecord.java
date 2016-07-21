@@ -55,13 +55,30 @@ public class SpeedRecord extends ListFragment{
     }
     //this is used to map the position of drawer to the resource of string
     private void init_map(){
+    	number2resource[16] = R.string.line_16;
+    	number2resource[13] = R.string.line_13;
+    	number2resource[12] = R.string.line_12;
+    	number2resource[11] = R.string.line_11;
+    	number2resource[10] = R.string.line_10;
+    	number2resource[9] = R.string.line_9;
+    	number2resource[8] = R.string.line_8;
     	number2resource[7] = R.string.line_7;
+    	number2resource[6] = R.string.line_6;
     	number2resource[5] = R.string.line_5;
     	number2resource[4] = R.string.line_4;
     	number2resource[3] = R.string.line_3;
     	number2resource[2] = R.string.line_2;
     	number2resource[1] = R.string.line_1;
+    	number2distance[16] = R.string.line_16_distance;
+    	number2distance[13] = R.string.line_13_distance;
+    	number2distance[12] = R.string.line_12_distance;
+    	number2distance[11] = R.string.line_11_distance;
+    	number2distance[10] = R.string.line_10_distance;
+    	number2distance[9] = R.string.line_9_distance;
+    	number2distance[8] = R.string.line_8_distance;
     	number2distance[7] = R.string.line_7_distance;
+    	number2distance[7] = R.string.line_7_distance;
+    	number2distance[6] = R.string.line_6_distance;
     	number2distance[5] = R.string.line_5_distance;
     	number2distance[4] = R.string.line_4_distance;
     	number2distance[3] = R.string.line_3_distance;

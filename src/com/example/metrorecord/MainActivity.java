@@ -73,7 +73,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		map_2.put(R.id.metro3, 3);
 		map_2.put(R.id.metro4, 4);
 		map_2.put(R.id.metro5, 5);
+		map_2.put(R.id.metro6, 6);
 		map_2.put(R.id.metro7, 7);
+		map_2.put(R.id.metro8, 8);
+		map_2.put(R.id.metro9, 9);
+		map_2.put(R.id.metro10, 10);
+		map_2.put(R.id.metro11, 11);
+		map_2.put(R.id.metro12, 12);
+		map_2.put(R.id.metro13, 13);
+		map_2.put(R.id.metro16, 16);
 	}
 
 	@Override
@@ -146,34 +154,15 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
 		// automatically handle clicks on the Home/Up button, so long
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
-		if (id == R.id.metro1 && mTitle.equals(getString(R.string.title_section2))) {
-			cur_sr = id;
-			onNavigationDrawerItemSelected(1);
-			return true;
-		}else if(id == R.id.metro2 && mTitle.equals(getString(R.string.title_section2))){
-			cur_sr = id;
-			onNavigationDrawerItemSelected(1);
-			return true;
-		}else if(id == R.id.metro3 && mTitle.equals(getString(R.string.title_section2))){
-			cur_sr = id;
-			onNavigationDrawerItemSelected(1);
-			return true;
-		}else if(id == R.id.metro4 && mTitle.equals(getString(R.string.title_section2))){
-			cur_sr = id;
-			onNavigationDrawerItemSelected(1);
-			return true;
-		}else if(id == R.id.metro5 && mTitle.equals(getString(R.string.title_section2))){
-			cur_sr = id;
-			onNavigationDrawerItemSelected(1);
-			return true;
-		}else if(id == R.id.metro7 && mTitle.equals(getString(R.string.title_section2))){
-			cur_sr = id;
-			onNavigationDrawerItemSelected(1);
-			return true;
-		}else if(!mTitle.equals(getString(R.string.title_section2))){
+		if(!mTitle.equals(getString(R.string.title_section2))){
 			Log.d("haha", "please select line in speed part");
 			return super.onOptionsItemSelected(item);
 			//return true;
+		}
+		if (map_2.get(id)!=null&& mTitle.equals(getString(R.string.title_section2))) {
+			cur_sr = id;
+			onNavigationDrawerItemSelected(1);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

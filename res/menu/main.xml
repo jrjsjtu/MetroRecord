@@ -39,10 +39,58 @@
         android:orderInCategory="100"
         android:title="@string/metro_5"
         app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro6"
+        android:orderInCategory="100"
+        android:title="@string/metro_6"
+        app:showAsAction="never"/>
         
     <item
         android:id="@+id/metro7"
         android:orderInCategory="101"
         android:title="@string/metro_7"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/metro8"
+        android:orderInCategory="101"
+        android:title="@string/metro_8"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro9"
+        android:orderInCategory="101"
+        android:title="@string/metro_9"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro10"
+        android:orderInCategory="101"
+        android:title="@string/metro_10"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro11"
+        android:orderInCategory="101"
+        android:title="@string/metro_11"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro12"
+        android:orderInCategory="101"
+        android:title="@string/metro_12"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro13"
+        android:orderInCategory="101"
+        android:title="@string/metro_13"
+        app:showAsAction="never"/>
+    
+    <item
+        android:id="@+id/metro16"
+        android:orderInCategory="101"
+        android:title="@string/metro_16"
         app:showAsAction="never"/>
 </menu>
