@@ -3,6 +3,8 @@ package com.example.metrorecord;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import android.hardware.Sensor;
@@ -34,16 +36,10 @@ public class Accelerometer {
     float speed_x=0,speed_y=0;
  	
     public BufferedWriter out;
-    
+    String mpath;
  	public Accelerometer(SensorManager the_sensor,String path){
  		mSensorManager = the_sensor;
- 		String time = new Date().getTime()+"";
- 		try {
-			out = new BufferedWriter(new FileWriter(path+"/"+time+".txt",true));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+ 		mpath = path;
       	aSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
       	mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_MAGNETIC_FIELD);
       	oSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
@@ -52,11 +48,25 @@ public class Accelerometer {
  	}
  	
  	public void start_record(){
+ 		try {
+ 	 		Date time = new Date();
+ 	 		DateFormat format=new SimpleDateFormat("yyyy-MM-dd-HH-mm");
+			out = new BufferedWriter(new FileWriter(mpath+"/"+format.format(time)+".txt",true));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
       	mSensorManager.registerListener(myListener, aSensor, SensorManager.SENSOR_DELAY_UI);  
         mSensorManager.registerListener(myListener, mSensor, SensorManager.SENSOR_DELAY_UI); 
         mSensorManager.registerListener(myListener, oSensor, SensorManager.SENSOR_DELAY_UI);  
  	}
  	public void stop_record(){
+ 		try {
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
  		mSensorManager.unregisterListener(myListener);
  	}
  	final SensorEventListener myListener=new SensorEventListener(){  
