@@ -53,7 +53,7 @@ public class SpeedRecord extends ListFragment{
     	list = (ListView) view.findViewById(android.R.id.list);
         return view;  
     }
-    //this is used to map the position of drawer to the resource of string
+    //this is used to map the position of drawer to the resource of String
     private void init_map(){
     	number2resource[16] = R.string.line_16;
     	number2resource[13] = R.string.line_13;
